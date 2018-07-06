@@ -71,23 +71,6 @@ define(['settings', 'order'], function(settings, order) {
 
 			document.getElementsByTagName('body')[0].style['background-image'] = "url(" + dataURL + ")";
 			document.getElementsByTagName('body')[0].style['backgroundImage'] = "url(" + dataURL + ")";
-
-			var img = document.createElement('img');
-			img.src = dataURL;
-			img.width = "100";
-
-			var download_link = document.createElement('a');
-			download_link.id = "download_link"
-			download_link.href = dataURL;
-			download_link.download = "wallpaper.png";
-			download_link.innerHTML = "Download";
-			download_link.target = "_blank";
-
-			var messageElem = document.getElementById('message');
-			messageElem.innerHTML = "";
-			messageElem.appendChild(img);
-			messageElem.appendChild(download_link);
-			messageElem.innerHTML += "<p>Internet explorer users: right click image and save as</p>";
 		}
 	};
 });

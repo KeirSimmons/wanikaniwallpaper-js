@@ -1,9 +1,8 @@
 require(["api", "canvasdrawer", "settings"], function(api, canvasDrawer, settings) {
-	var form = document.getElementById("api-form");
+
+	console.log(settings)
 
 	function makeRequest() {
-		var messageElem = document.getElementById('message');
-		messageElem.innerHTML = "Loading...";
 		api.load(function() {
 
 			canvasDrawer.draw(api.characters);
@@ -11,8 +10,6 @@ require(["api", "canvasdrawer", "settings"], function(api, canvasDrawer, setting
 		});
 		return false;
 	}
-
-	form.onsubmit = makeRequest;
 	
 	if (settings.api_key) {
 		makeRequest();

@@ -1,12 +1,17 @@
 define(function() {
+
+	var url_string = window.location.href
+	var url = new URL(url_string);
+	var api_key = url.searchParams.get("api_key");
+
 	var defaults_ = {
-		api_key: '',
-		width: screen.width,
-		height: screen.height,
+		api_key: api_key,
+		width: window.innerWidth,
+		height: window.innerHeight,
 		margin: {
-			top: 30,
-			bottom: 30,
-			left: 30,
+			top: 10,
+			bottom: 10,
+			left: 10,
 			right: 30
 		},
 		colors: {
@@ -55,49 +60,6 @@ define(function() {
 	}
 
 	readCookie();
-
-	function connectFormField(fieldName, proprtyName) {
-		var elem = document.getElementById(fieldName);
-		elem.value = read(proprtyName);
-		elem.oninput = function() {
-			write(proprtyName, elem.value);
-		}
-	}
-
-	function connectMarginField(fieldName, proprtyName) {
-		var elem = document.getElementById(fieldName);
-		elem.value = read('margin')[proprtyName];
-		elem.oninput = function() {
-			settings_.margin[proprtyName] = parseInt(elem.value);
-			writeCookie();
-		}
-	}
-
-	function connectColorField(fieldName, proprtyName) {
-		var elem = document.getElementById(fieldName);
-		elem.value = read('colors')[proprtyName];
-		elem.oninput = function() {
-			settings_.colors[proprtyName] = elem.value;
-			writeCookie();
-		}
-	}
-
-	connectFormField('form-apikey', 'api_key');
-	connectFormField('form-width', 'width');
-	connectFormField('form-height', 'height');
-
-	connectMarginField('form-margin-top', 'top');
-	connectMarginField('form-margin-bottom', 'bottom');
-	connectMarginField('form-margin-left', 'left');
-	connectMarginField('form-margin-right', 'right');
-
-	connectColorField('form-color-background', 'background');
-	connectColorField('form-color-unseen', 'unseen');
-	connectColorField('form-color-apprentice', 'apprentice');
-	connectColorField('form-color-guru', 'guru');
-	connectColorField('form-color-master', 'master');
-	connectColorField('form-color-enlighten', 'enlighten');
-	connectColorField('form-color-burned', 'burned');
 
 	return {
 		get api_key() { return read('api_key'); },
